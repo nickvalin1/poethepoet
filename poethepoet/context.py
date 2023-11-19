@@ -1,6 +1,6 @@
 import re
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Dict, Mapping, Optional, Tuple, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Tuple, Union
 
 if TYPE_CHECKING:
     from .config import PoeConfig
@@ -49,7 +49,7 @@ class RunContext:
     def get_task_env(
         self,
         parent_env: Optional["EnvVarsManager"],
-        task_envfile: Optional[str],
+        task_envfile: Optional[Union[str, List[str]]],
         task_env: Optional[Mapping[str, str]],
         task_uses: Optional[Mapping[str, Tuple[str, ...]]] = None,
     ) -> "EnvVarsManager":
@@ -104,7 +104,7 @@ class RunContext:
         env: "EnvVarsManager",
         working_dir: Path,
         executor_config: Optional[Mapping[str, str]] = None,
-        capture_stdout: bool = False,
+        capture_stdout: Union[str, bool] = False,
     ) -> "PoeExecutor":
         from .executor import PoeExecutor
 
@@ -113,7 +113,7 @@ class RunContext:
             context=self,
             env=env,
             working_dir=working_dir,
-            dry=self.dry,
             executor_config=executor_config,
             capture_stdout=capture_stdout,
+            dry=self.dry,
         )

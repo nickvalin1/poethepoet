@@ -96,7 +96,7 @@ async-task.args = ["a","b"]
   env.DEFAULT_GREETING.default = "yo"
 
     [[tool.poe.tasks.greet-positional.args]]
-    name = "greeting"
+    name = 2
     positional = true
     default = "${DEFAULT_GREETING}"
     help = "this one is required"

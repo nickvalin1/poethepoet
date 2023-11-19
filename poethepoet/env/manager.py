@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Dict, Mapping, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Union
 
 from .template import apply_envvars_to_template
 
@@ -82,7 +82,9 @@ class EnvVarsManager:
             )
 
     def for_task(
-        self, task_envfile: Optional[str], task_env: Optional[Mapping[str, str]]
+        self,
+        task_envfile: Optional[Union[str, List[str]]],
+        task_env: Optional[Mapping[str, str]],
     ) -> "EnvVarsManager":
         """
         Create a copy of self and extend it to include vars for the task.

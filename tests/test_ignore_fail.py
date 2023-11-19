@@ -19,6 +19,7 @@ def generate_pyproject(tmp_path):
             project_tmpl += "\nignore_fail = true"
         elif not isinstance(ignore_fail, bool):
             project_tmpl += f'\nignore_fail = "{ignore_fail}"'
+
         with open(tmp_path / "pyproject.toml", "w") as fp:
             fp.write(project_tmpl)
 
